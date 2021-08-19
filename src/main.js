@@ -6,6 +6,8 @@ import router from './router'
 
 import 'bulma/css/bulma.css'
 
+//FONTAWESOME Iconen
+
 import FontAwesome from '@fortawesome/fontawesome'
 import VueFontAwesome from '@fortawesome/vue-fontawesome'
 import FontAwesomeSolid from '@fortawesome/fontawesome-free-solid'

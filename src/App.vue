@@ -12,5 +12,8 @@ export default {
 </script>
 
 <style>
+table td {
+  word-break: break-word;
+}
 
 </style>
