@@ -1,17 +1,14 @@
 <template>
-  <tbody
-    v-bind:key="index"
-  >
-  <template v-for="(song, index) in paginatieItems>
-    <tr>
-      <!--oproep json playlist-->
+    <tbody>
+    <template v-for="(song, index) in gepagineerdeItems">
+    <tr v-bind:key="index">
       <td>{{ song.artist }}</td>
       <td>{{ song.title }}</td>
       <td>{{ song.album }}</td>
-      <td>{{ song.duration }}</td>
+      <td>{{ song.genre }}</td>
     </tr>
-    </tbody>
-    </table>
+    </template>
+  </tbody>
 
 </template>
 
@@ -23,14 +20,14 @@ export default {
       type: Array,
       required: true
     },
+    //per pagina max 50 songs
     per_pagina: {
       type: Number,
       required: false,
       default: 50
     }
   },
-
-  //pagina 1 aangeven
+//pagina 1 aangeven
   data () {
     return {
       page: 1
@@ -39,7 +36,11 @@ export default {
   computed: {
     totaalPaginas () {
       //afgerond items array lengte delen door pagina
-      return Math.ceil(this.items.length / this.per_page)
+      return Math.ceil(this.items.length / this.per_pagina)
+    },
+    //slice aantal zichtbaar per pagina
+    gepagineerdeItems () {
+      return this.items.slice(0, this.page * this.per_pagina)
     }
   },
   //hook
@@ -47,18 +48,20 @@ export default {
     window.addEventListener('scroll', e => {
       //aan het einde, ga terug 0
       if (this.page >= this.totalPages) return //0
-      // pagina toevoegen bij einde pagina
+      // items toevoegen bij einde pagina
       if (window.innerHeight + window.pageYOffset >= document.body.offsetHeight - 100) {
         this.page++ //increment
       }
     })
   },
   watch: {
-    items: () {
+    items () {
       this.page = 1
     }
   }
-};
+ }
+
+
 </script>
 
 <style>

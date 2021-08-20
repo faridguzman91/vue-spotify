@@ -3,60 +3,61 @@
     <!--bulma classes styles-->
     <thead>
       <th style="width: 30%">
-        <a @click="sorting('artist')"
-          >Artist
+        <a @click="sorting('artist')">Artist
           <i
             class="fas fa-chevron-up"
             v-if="sortBy == 'artist' && sortDirection == 'ascending'"
           ></i>
-          <i
-            class="fas fa-chevron-down"
-            v-if="sortBy == 'artist' && sortDirection == 'descending'"
-          />
+            <i
+              class="fas fa-chevron-down"
+              v-if="sortBy == 'artist' && sortDirection == 'descending'"
+            />
         </a>
       </th>
       <th style="width: 30%">
-        <a @click="sorting('title')"
-          >Title
-         <i
+        <a @click="sorting('title')">Title
+          <i
             class="fas fa-chevron-up"
             v-if="sortBy == 'artist' && sortDirection == 'ascending'"
           ></i>
-          <i
-            class="fas fa-chevron-down"
-            v-if="sortBy == 'artist' && sortDirection == 'descending'"
-          />
-        </a>
-      </th>
-      <th style="width: 20%">
-        <a @click="sorting('album')"
-          >Album
             <i
-            class="fas fa-chevron-up"
-            v-if="sortBy == 'artist' && sortDirection == 'ascending'"
-          ></i>
-          <i
-            class="fas fa-chevron-down"
-            v-if="sortBy == 'artist' && sortDirection == 'descending'"
-          />
+              class="fas fa-chevron-down"
+              v-if="sortBy == 'artist' && sortDirection == 'descending'"
+            />
         </a>
       </th>
       <th style="width: 20%">
-        <a @click="sorting('duration')"
-          >Duration
+        <a @click="sorting('album')">Album
           <i
             class="fas fa-chevron-up"
             v-if="sortBy == 'artist' && sortDirection == 'ascending'"
           ></i>
+            <i
+              class="fas fa-chevron-down"
+              v-if="sortBy == 'artist' && sortDirection == 'descending'"
+            />
+        </a>
+      </th>
+      <th style="width: 20%">
+        <a @click="sorting('duration')">Duration
           <i
-            class="fas fa-chevron-down"
-            v-if="sortBy == 'artist' && sortDirection == 'descending'"
-          />
+            class="fas fa-chevron-up"
+            v-if="sortBy == 'artist' && sortDirection == 'ascending'"
+          ></i>
+            <i
+              class="fas fa-chevron-down"
+              v-if="sortBy == 'artist' && sortDirection == 'descending'"
+            />
         </a>
       </th>
     </thead>
 
-    <tbody v-for="(song, index) in songsSorteren" v-bind:key="index">
+    <paginatie :items="songsSorteren" />
+
+    <tbody
+      v-for="(song, index) in songsSorteren"
+      v-bind:key="index"
+    >
       <tr>
         <!--oproep json playlist-->
         <td>{{ song.artist }}</td>
@@ -64,14 +65,20 @@
         <td>{{ song.album }}</td>
         <td>{{ song.duration }}</td>
       </tr>
-    </tbody>
+      </tbody>
   </table>
 </template>
 
 <script>
 //import playlist json
-import playlistData from "@/assets/spotifyplaylist.json";
+import playlistData from "@/assets/cyberlofiplaylist.json";
+//import paginatie js
+import paginatabelbody from "@/components/paginatabellen";
+
 export default {
+  components: {
+    'paginatie': paginatabelbody
+  },
   data() {
     return {
       //array
@@ -79,7 +86,7 @@ export default {
       //sorteren
       sortBy: "",
       //oplopend sorteren
-      sortDirection: "ascending",
+      sortDirection: "ascending"
     };
   },
   computed: {
@@ -107,7 +114,7 @@ export default {
 
         return 0;
       });
-    },
+    }
   },
   methods: {
     //sorteer functie, als al 'oplopend', sorteer aflopend, anders weer oplopend
@@ -118,8 +125,8 @@ export default {
         this.sortDirection = "ascending";
       }
       this.sortBy = column;
-    },
-  },
+    }
+  }
 };
 </script>
 

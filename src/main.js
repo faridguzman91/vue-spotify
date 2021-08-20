@@ -9,12 +9,13 @@ import 'bulma/css/bulma.css'
 //FONTAWESOME Iconen
 
 import FontAwesome from '@fortawesome/fontawesome'
-import VueFontAwesome from '@fortawesome/vue-fontawesome'
+//dit werkt niet
+//import VueFontAwesome from '@fortawesome/vue-fontawesome'
 import FontAwesomeSolid from '@fortawesome/fontawesome-free-solid'
 
 FontAwesome.library.add(FontAwesomeSolid)
-
-Vue.component('fa-icon', VueFontAwesome)
+    //dit werkt niet
+    //Vue.component('fa-icon', VueFontAwesome)
 
 Vue.config.productionTip = false
 
