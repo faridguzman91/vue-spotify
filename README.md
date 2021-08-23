@@ -1,5 +1,13 @@
 # musiclibrary
 
+install
+npm install --save buefy
+npm install --save bulma
+$ npm i --save @fortawesome/free-brands-svg-icons
+$ npm i --save @fortawesome/free-regular-svg-icons
+$ npm i --save @fortawesome/vue-fontawesome@latest
+
+
 > spotify library running vue
 
 ## Build Setup
